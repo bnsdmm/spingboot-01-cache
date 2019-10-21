@@ -14,7 +14,7 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
     @GetMapping("/emp/{id}")
-    @Cacheable(cacheNames = {"emp"},key = "#root.args[0]")
+    @Cacheable(cacheNames = {"emp"},keyGenerator = "myKeyGenerator")
     public Employee getEmployee(@PathVariable("id") Integer id){
         Employee employee=employeeService.getEmp(id);
         return  employee;
