@@ -3,22 +3,30 @@ package com.atguigu.cache.controller;
 import com.atguigu.cache.bean.Employee;
 import com.atguigu.cache.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
+
     @GetMapping("/emp/{id}")
-    @Cacheable(cacheNames = {"emp"},keyGenerator = "myKeyGenerator")
-    public Employee getEmployee(@PathVariable("id") Integer id){
-        Employee employee=employeeService.getEmp(id);
-        return  employee;
+    public Employee getEmployee(@PathVariable("id") Integer id) {
+        Employee employee = employeeService.getEmp(id);
+        return employee;
     }
 
+    @GetMapping("/emp")
+    public Employee upEmp(Employee employee) {
+        Employee emp = employeeService.updateEmp(employee);
+        return emp;
+    }
 
+    @GetMapping("deleteEmp")
+    public String deleteEmp(Integer id) {
+        employeeService.deleteEmp(id);
+        return "sucess";
+    }
 }

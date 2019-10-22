@@ -8,7 +8,7 @@ public interface EmployeeMapper {
     @Select("SELECT * FROM employee WHERE id = #{id}")
     public Employee getEmpById(Integer id);
 
-    @Update("UPDATE employee SET lastName=#{lastName},email=#{email},gender=#{gerder},d_id=#{dId}")
+    @Update("UPDATE employee SET lastName=#{lastName},email=#{email},gender=#{gender},d_id=#{dId} WHERE id=#{id}")
     public void updataEmp(Employee employee);
 
     @Delete("DELETE FROM emplyee WHERE id=#{id}")
