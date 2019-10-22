@@ -15,4 +15,8 @@ public class EmployeeService {
        Employee employee= employeeMapper.getEmpById(id);
        return employee;
     }
+
+    public void updateEmp(Employee employee){
+        employeeMapper.updataEmp(employee);
+    }
 }
